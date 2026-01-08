@@ -30,7 +30,6 @@ index = (capacity - 1) & hash;//It will calculate the index
 - Each **key is unique**
 - Uses **hashing** to store and retrieve data fast
 
-Example:
 ```java
 map.put("A", 10);
 
@@ -139,7 +138,6 @@ HashMap internally uses:
 | put()     | O(1)         | O(log n)  |
 | get()     | O(1)         | O(log n)  |
 
-----------------------------------------------------------------------------------------------------------------------------------------
 
 # Linked HashMap
 
