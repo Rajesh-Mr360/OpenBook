@@ -24,6 +24,86 @@ Note that when nodes in a bucket reduced to less than _UNTREEIFY_THRESHOLD_ th
 **HashMap is not Synchronized.** When multiple threads accessing the map and one tried to modify the data then a `ConcurrentModificationException` will be thrown.
 index = (capacity - 1) & hash;//It will calculate the index
 
+1️⃣ What is HashMap?
+   Stores data as Key – Value pairs
+   Each key is unique
+   Uses hashing to store and retrieve data fast
+   map.put("A", 10);
+   
+2️⃣ Internal Structure
+   HashMap internally uses:
+   An array (called table or bucket array)
+   Each index of the array is a bucket
+   Each bucket can store:
+   One entry Or multiple entries (due to collision)
+   Index   Bucket
+    0  ---> null
+    1  ---> (A,10)
+    2  ---> (B,20) -> (C,30)
+    3  ---> null
+    
+3️⃣ What happens when you call put(key, value)?
+    Step 1: Calculate hash
+            Java calls: key.hashCode()
+    Then improves it internally: hash = hash ^ (hash >>> 16);//This spreads keys evenly.
+    Step 2: Find bucket index : index = (capacity - 1) & hash;
+            Default capacity = 16
+            This ensures index is between 0–15
+    Step 3: Store entry
+            If bucket is empty → store directly
+            If bucket already has entries → collision occurs
+4️⃣ What is Collision & how it is handled?
+    Collision When two different keys map to the same bucket index, it is called a collision.
+    Handling collision
+        HashMap stores entries in the same bucket using:
+        LinkedList (initially)
+        Red-Black Tree (Java 8+ when list grows)
+
+5️⃣ LinkedList → Red-Black Tree (Java 8+)
+    If bucket size > 8
+    AND overall capacity ≥ 64
+➡ LinkedList is converted to Red-Black Tree
+   Why?
+    Structure	Time
+     LinkedList	O(n)
+     Tree	O(log n)
+
+6️⃣ How get(key) works?
+    Steps:
+     1.Compute hash of "A"
+     2.Find bucket index
+     3.Traverse bucket:
+        Compare hash
+        Then compare equals()
+     4.Return value
+
+7️⃣ Role of equals() & hashCode() ⭐
+   ✔ Same key → same hashCode()
+   ✔ HashMap uses:
+   ashCode() → find bucket
+   equals() → find exact key
+   Wrong implementation = bugs & performance issues
+
+8️⃣ Resizing (Rehashing)
+     When resizing happens?
+     When: size > capacity × loadFactor
+     Default:
+       Capacity = 16
+       Load Factor = 0.75
+   ➡ Resize when size > 12
+      New capacity = 32
+
+9️⃣ Null key handling
+     One null key allowed
+     Always stored at bucket index 0
+     Multiple null values allowed
+
+🔄 Time Complexity
+           Operation	   Average	  Worst
+             put()	      O(1)	   O(log n)
+             get()	      O(1)  	 O(log n)
+
+
 # Linked HashMap
 
 The `LinkedHashMap` in Java works similar to a `HashMap`, but the key difference is that `LinkedHashMap` maintains the insertion order, whereas `HashMap` does not guarantee any specific order.
