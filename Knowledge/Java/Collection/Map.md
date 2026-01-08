@@ -37,11 +37,8 @@ index = (capacity - 1) & hash;//It will calculate the index
 - Uses **hashing** to store and retrieve data fast
 
 Example:
-```java
-  map.put("A", 10);
-
-
-
+  -java
+  -map.put("A", 10);
 
    
 ## 2️⃣ Internal Structure
