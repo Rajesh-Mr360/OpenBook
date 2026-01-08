@@ -36,9 +36,7 @@ index = (capacity - 1) & hash;//It will calculate the index
 - Each **key is unique**
 - Uses **hashing** to store and retrieve data fast
 
-Example:
-  -java
-  -map.put("A", 10);
+Example: map.put("A", 10);
 
    
 ## 2️⃣ Internal Structure
@@ -49,11 +47,15 @@ HashMap internally uses:
 - Each bucket can store:
   - One entry
   - Multiple entries (**due to collision**)
-   Index   Bucket
-    0  ---> null
-    1  ---> (A,10)
-    2  ---> (B,20) -> (C,30)
-    3  ---> null
+  ## Index to Bucket Mapping
+
+| Index | Bucket                     |
+|-------|----------------------------|
+| 0     | null                       |
+| 1     | (A, 10)                    |
+| 2     | (B, 20) → (C, 30)          |
+| 3     | null                       |
+
     
 ## 3️⃣ What happens when you call `put(key, value)`?
 
