@@ -22,6 +22,7 @@ Starting from Java 8, if the number of entries in a bucket exceeds the threshold
 Note that when nodes in a bucket reduced to less than _UNTREEIFY_THRESHOLD_ the _Tree_ again converts to _LinkedList_. This helps balance performance with memory usage because _TreeNodes_ takes more memory than _Map.Entry_ instances. So **_Map_ uses _Tree_ only when there is a considerable performance gain in exchange for memory wastage**.
 
 **HashMap is not Synchronized.** When multiple threads accessing the map and one tried to modify the data then a `ConcurrentModificationException` will be thrown.
+index = (capacity - 1) & hash;//It will calculate the index
 
 # Linked HashMap
 
