@@ -24,12 +24,19 @@ Note that when nodes in a bucket reduced to less than _UNTREEIFY_THRESHOLD_ th
 **HashMap is not Synchronized.** When multiple threads accessing the map and one tried to modify the data then a `ConcurrentModificationException` will be thrown.
 index = (capacity - 1) & hash;//It will calculate the index
 
+# Java HashMap – Internal Working
+
+> **Note:** HashMap is **not synchronized**. When multiple threads access the map and one modifies it, a `ConcurrentModificationException` may be thrown.
+
+---
+
 ## 1️⃣ What is HashMap?
 
 - Stores data as **Key – Value** pairs
 - Each **key is unique**
 - Uses **hashing** to store and retrieve data fast
 
+Example:
 ```java
 map.put("A", 10);
 
